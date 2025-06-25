@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ name }}'s Resume</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+        body { font-family: 'Montserrat', sans-serif; background-color: #f0f4f8; color: #4a4a4a; }
+        .banner { background-color: #4e5d6c; color: white; padding: 30px; text-align: center; }
+        .banner h1 { font-size: 3em; margin: 0; }
+        .banner p { font-size: 1.2em; }
+        .content { padding: 20px; }
+        h2 { color: #1a237e; text-transform: uppercase; letter-spacing: 2px; }
+        .section { background-color: #ffffff; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <h1>{{ name }}</h1>
+        <p>{{ email }} &bull; {{ phone }}
+        {% if linkedin %} &bull; {{ linkedin }}{% endif %}
+        {% if github %} &bull; {{ github }}{% endif %}
+        </p>
+    </div>
+
+    <div class="content">
+        {% if experience %}
+        <div class="section">
+            <h2>Professional Experience</h2>
+            {% for exp in experience %}
+                {% if exp %}
+                <p>{{ exp }}</p>
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if education %}
+        <div class="section">
+            <h2>Education</h2>
+            {% for edu in education %}
+                {% if edu %}
+                <p>{{ edu }}</p>
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if skills %}
+        <div class="section">
+            <h2>Core Competencies</h2>
+            <p>{{ skills }}</p>
+        </div>
+        {% endif %}
+
+        {% if projects %}
+        <div class="section">
+            <h2>Projects</h2>
+            {% for proj in projects %}
+                {% if proj %}
+                <p>{{ proj }}</p>
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if certifications %}
+        <div class="section">
+            <h2>Certifications</h2>
+            {% for cert in certifications %}
+                {% if cert %}
+                <p>{{ cert }}</p>
+                {% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        {% if full_text %}
+        <div class="section">
+            {{ full_text | replace('\n', '<br>') | safe }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html> 

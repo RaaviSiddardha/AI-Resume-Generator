@@ -1,0 +1,14 @@
+streamlit
+langchain
+langchain-openai
+langchain-community
+langchain-huggingface
+langgraph
+pdfminer.six
+pdfkit
+python-dotenv
+GitPython
+faiss-cpu
+Jinja2
+huggingface-hub
+datasets 

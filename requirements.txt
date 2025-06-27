@@ -5,7 +5,7 @@ langchain-community
 langchain-huggingface
 langgraph
 pdfminer.six
-pdfkit
+pypdf2
 python-dotenv
 GitPython
 faiss-cpu

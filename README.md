@@ -1,3 +1,5 @@
+![CI/CD](https://github.com/RaaviSiddardha/AI-Resume-Generator/actions/workflows/ci-cd.yml/badge.svg)
+
 # 🤖 AI-Powered Resume Generator with LangChain & HuggingFace
 
 A sophisticated resume generation and optimization platform powered by LangChain and HuggingFace, featuring advanced AI capabilities for creating, improving, and tailoring professional resumes.

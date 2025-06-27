@@ -196,7 +196,7 @@ with tab1:
                 
                 # Show generation details
                 with st.expander("Generation Details"):
-                    st.write("**Model Used:**", get_llm_config().name)
+                    st.write("**Model Used:**", get_llm_config()['name'])
                     st.write("**Tone:**", tone)
                     st.write("**Template:**", template)
                     st.write("**Word Count:**", len(ai_generated_text.split()))
@@ -266,7 +266,7 @@ with tab2:
                     # Show improvement details
                     with st.expander("Improvement Details"):
                         st.write("**Improvement Focus:**", ", ".join(improvement_type))
-                        st.write("**Model Used:**", get_llm_config().name)
+                        st.write("**Model Used:**", get_llm_config()['name'])
                     
                     # Download button
                     with open(pdf_path, "rb") as f:
@@ -338,8 +338,8 @@ with tab3:
                     # Show tailoring details
                     with st.expander("Tailoring Details"):
                         st.write("**Match Score:**", f"{match_score}%")
-                        st.write("**Model Used:**", get_llm_config().name)
-                        st.write("**Embedding Model:**", get_embedding_config().name)
+                        st.write("**Model Used:**", get_llm_config()['name'])
+                        st.write("**Embedding Model:**", get_embedding_config()['name'])
                     
                     # Download button
                     with open(pdf_path, "rb") as f:

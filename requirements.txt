@@ -11,4 +11,5 @@ GitPython
 faiss-cpu
 Jinja2
 huggingface-hub
-datasets 
+datasets
+PyPDF2

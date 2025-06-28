@@ -8,6 +8,7 @@ from pdfminer.layout import LAParams
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.pdfpage import PDFPage
 from jinja2 import Environment, FileSystemLoader
+from fpdf import FPDF
 
 # Try to import PyPDF2, fallback to pdfminer if not available
 try:
@@ -125,7 +126,11 @@ def generate_pdf_from_html(resume_data: Dict[str, Any], template_name: str = "mo
         </html>
         """
         
-        return styled_html.encode('utf-8')
+        pdf = FPDF()
+        pdf.add_page()
+        pdf.set_font("Arial", size=12)
+        # ... (add content)
+        return pdf.output(dest="S").encode("latin1")
         
     except Exception as e:
         print(f"An error occurred during HTML generation: {e}")

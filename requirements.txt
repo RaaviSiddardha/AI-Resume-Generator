@@ -12,3 +12,4 @@ faiss-cpu
 Jinja2
 huggingface-hub
 datasets
+fpdf2

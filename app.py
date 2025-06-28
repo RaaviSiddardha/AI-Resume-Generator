@@ -12,6 +12,7 @@ from core.config import get_st_config, update_st_config, llm_models, embedding_m
 from core.llm import resume_llm
 from core.embeddings import resume_embeddings
 import pandas as pd
+from fpdf import FPDF
 
 # Load environment variables
 load_dotenv()
@@ -493,3 +494,48 @@ st.markdown("""
     <p>Advanced AI-powered resume generation and optimization</p>
 </div>
 """, unsafe_allow_html=True)
+
+def generate_pdf_from_html(resume_data, template_name="modern.html"):
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font("Arial", size=12)
+
+    # Add Name
+    pdf.set_font("Arial", "B", 16)
+    pdf.cell(0, 10, resume_data.get("name", "Name"), ln=True)
+    pdf.set_font("Arial", size=12)
+
+    # Add Contact Info
+    pdf.cell(0, 10, f"Email: {resume_data.get('email', '')}", ln=True)
+    pdf.cell(0, 10, f"Phone: {resume_data.get('phone', '')}", ln=True)
+    pdf.cell(0, 10, f"LinkedIn: {resume_data.get('linkedin', '')}", ln=True)
+    pdf.cell(0, 10, f"GitHub: {resume_data.get('github', '')}", ln=True)
+    pdf.ln(5)
+
+    # Add Sections
+    def add_section(title, items):
+        pdf.set_font("Arial", "B", 14)
+        pdf.cell(0, 10, title, ln=True)
+        pdf.set_font("Arial", size=12)
+        for item in items:
+            pdf.multi_cell(0, 10, f"- {item}")
+        pdf.ln(2)
+
+    add_section("Education", resume_data.get("education", []))
+    add_section("Experience", resume_data.get("experience", []))
+    add_section("Projects", resume_data.get("projects", []))
+    add_section("Certifications", resume_data.get("certifications", []))
+
+    # Add Skills
+    skills = resume_data.get("skills", "")
+    if skills:
+        add_section("Skills", [skills])
+
+    # Add AI-generated text if present
+    if "full_text" in resume_data:
+        pdf.set_font("Arial", "B", 14)
+        pdf.cell(0, 10, "AI Generated Content", ln=True)
+        pdf.set_font("Arial", size=12)
+        pdf.multi_cell(0, 10, resume_data["full_text"])
+
+    return pdf.output(dest="S").encode("latin1")
